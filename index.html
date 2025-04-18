@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Удостоверение личности</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <span class="time">22:36</span>
+    <div class="header-icon">&#9664;</div>
+    <h1 class="title">Удостоверение личности</h1>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('document')">Документ</button>
+    <button class="tab" onclick="switchTab('details')">Реквизиты</button>
+  </div>
+
+  <div class="tab-content">
+    <div id="document" class="tab-panel active-panel">
+      <label for="upload" class="upload-label">
+        <div class="document-placeholder" id="doc-preview">
+          Нажмите для загрузки
+        </div>
+      </label>
+      <input type="file" id="upload" accept="image/*" hidden onchange="previewImage(event)" />
+    </div>
+
+    <div id="details" class="tab-panel">
+      <div class="details-box">
+        <p><strong>Серия:</strong> 1234</p>
+        <p><strong>Номер:</strong> 567890</p>
+        <p><strong>Дата выдачи:</strong> 01.01.2020</p>
+        <p><strong>Кем выдан:</strong> МВД РФ</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="show-doc">Предъявить документ</button>
+    <button class="send-doc">Отправить документ</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
