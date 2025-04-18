@@ -1,22 +1,36 @@
-function switchTab(tabId) {
-  const tabs = document.querySelectorAll('.tab');
-  const panels = document.querySelectorAll('.tab-panel');
+// Переключение вкладок
+const tabs = document.querySelectorAll('.tab');
+const contents = document.querySelectorAll('.tab-content');
 
-  tabs.forEach(tab => tab.classList.remove('active'));
-  panels.forEach(panel => panel.classList.remove('active-panel'));
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    contents.forEach(c => c.classList.remove('active'));
 
-  document.querySelector(.tab[onclick*="${tabId}"]).classList.add('active');
-  document.getElementById(tabId).classList.add('active-panel');
-}
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
 
-function previewImage(event) {
-  const file = event.target.files[0];
+// Загрузка изображения ID карты
+const uploadArea = document.getElementById('upload-area');
+const fileInput = document.getElementById('file-input');
+const previewImage = document.getElementById('preview-image');
+const uploadText = document.getElementById('upload-text');
+
+uploadArea.addEventListener('click', () => {
+  fileInput.click();
+});
+
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
   if (file) {
     const reader = new FileReader();
-    reader.onload = function(e) {
-      const preview = document.getElementById('doc-preview');
-      preview.innerHTML = <img src="${e.target.result}" alt="Документ" />;
+    reader.onload = () => {
+      previewImage.src = reader.result;
+      previewImage.style.display = 'block';
+      uploadText.style.display = 'none';
     };
     reader.readAsDataURL(file);
   }
-}
+});
