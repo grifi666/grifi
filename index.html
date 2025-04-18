@@ -2,42 +2,68 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Удостоверение личности</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="header-icon">&#9664;</div>
-    <h1 class="title">Удостоверение личности</h1>
-  </header>
+  <div class="container">
+    <header>
+      <button class="back-button">&larr;</button>
+      <h1>Удостоверение личности</h1>
+    </header>
 
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('document')">Документ</button>
-    <button class="tab" onclick="switchTab('details')">Реквизиты</button>
-  </div>
-
-  <div class="tab-content">
-    <div id="document" class="tab-panel active-panel">
-      <label for="upload" class="upload-label">
-        <div class="document-placeholder" id="doc-preview">
-          Нажмите для загрузки
-        </div>
-      </label>
-      <input type="file" id="upload" accept="image/*" hidden onchange="previewImage(event)" />
+    <div class="tabs">
+      <button class="tab active" data-tab="document">Документ</button>
+      <button class="tab" data-tab="details">Реквизиты</button>
     </div>
 
-    <div id="details" class="tab-panel">
-      <div class="details-box">
-        <p><strong>Серия:</strong> 1234</p>
-        <p><strong>Номер:</strong> 567890</p>
-        <p><strong>Дата выдачи:</strong> 01.01.2020</p>
-        <p><strong>Кем выдан:</strong> МВД РФ</p>
+    <div id="document" class="tab-content active">
+      <div class="doc-preview" id="upload-area">
+        <p id="upload-text">Изображение документа</p>
+        <img id="preview-image" src="" alt="ID карта" style="display: none;" />
+        <input type="file" id="file-input" accept="image/*" hidden />
+      </div>
+
+      <button class="btn primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 4H21V20H3z"/><path d="M8 8H16M8 12H16M8 16H12"/></svg>
+        Предъявить документ
+      </button>
+
+      <button class="btn outline">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2"><path d="M4 4H20V20H4z"/><path d="M12 8V16M8 12H16"/></svg>
+        Отправить документ
+      </button>
+    </div>
+
+    <div id="details" class="tab-content">
+      <div class="form-group">
+        <label>ФИО</label>
+        <input type="text" value="Иванов Иван Иванович" />
+      </div>
+      <div class="form-group">
+        <label>ИИН</label>
+        <input type="text" value="000000000000" />
+      </div>
+      <div class="form-group">
+        <label>Дата рождения</label>
+        <input type="text" value="01.01.1990" />
+      </div>
+      <div class="form-group">
+        <label>Номер документа</label>
+        <input type="text" value="123456789" />
+      </div>
+      <div class="form-group">
+        <label>Дата выдачи</label>
+        <input type="text" value="01.01.2020" />
+      </div>
+      <div class="form-group">
+        <label>Срок действия</label>
+        <input type="text" value="01.01.2030" />
       </div>
     </div>
   </div>
 
-  <div class="actions">
-    <button class="show-doc">Предъявить документ</button>
-    <button class="send-doc">Отправить документ</button>
-  </div>
+  <script src="script.js"></script>
+</body>
+</html>
