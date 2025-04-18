@@ -13,13 +13,6 @@ body {
   background-color: white;
 }
 
-.time {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  font-size: 14px;
-}
-
 .header-icon {
   position: absolute;
   left: 10px;
@@ -71,8 +64,13 @@ body {
   display: block;
 }
 
+.upload-label {
+  display: block;
+}
+
 .document-placeholder {
   height: 300px;
+  width: 100%;
   background-color: #f0f0f0;
   border: 2px dashed #ccc;
   border-radius: 12px;
@@ -82,13 +80,16 @@ body {
   color: #999;
   transition: 0.3s ease;
   cursor: pointer;
+  overflow: hidden;
+  position: relative;
 }
 
 .document-placeholder img {
-  width: 100%;
   height: 100%;
+  width: 100%;
   object-fit: cover;
   border-radius: 12px;
+  display: block;
 }
 
 .details-box {
