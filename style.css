@@ -1,163 +1,130 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  font-family: sans-serif;
   margin: 0;
-  background-color: #fff;
-  color: #333;
+  padding: 0;
+  background: #fff;
 }
 
-.header {
-  position: relative;
-  padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid #ccc;
-  background-color: white;
+.container {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.header-icon {
-  position: absolute;
-  left: 10px;
-  top: 35px;
-  font-size: 20px;
-  cursor: pointer;
+header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
-.title {
+.back-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #e53935;
+  margin-right: 10px;
+}
+
+h1 {
+  font-size: 18px;
   margin: 0;
-  font-size: 20px;
-  padding-top: 10px;
 }
 
 .tabs {
   display: flex;
-  margin: 20px;
-  border: 1px solid #ff4d4d;
-  border-radius: 8px;
-  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .tab {
   flex: 1;
-  padding: 12px;
-  background-color: white;
-  border: none;
-  color: #ff4d4d;
-  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #e53935;
+  background: #fff;
+  color: #e53935;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.3s ease;
 }
 
 .tab.active {
-  background-color: #ff4d4d;
+  background: #e53935;
   color: white;
 }
 
 .tab-content {
-  padding: 0 20px;
-}
-
-.tab-panel {
   display: none;
-  animation: fadeIn 0.3s ease;
 }
 
-.active-panel {
+.tab-content.active {
   display: block;
 }
 
-.upload-label {
-  display: block;
+.form-group {
+  margin-bottom: 15px;
 }
 
-.document-placeholder {
-  height: 300px;
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.form-group input {
   width: 100%;
-  background-color: #f0f0f0;
-  border: 2px dashed #ccc;
-  border-radius: 12px;
-  text-align: center;
-  line-height: 300px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
   font-size: 16px;
-  color: #999;
-  transition: 0.3s ease;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  border-radius: 8px;
   cursor: pointer;
-  overflow: hidden;
-  position: relative;
 }
 
-.document-placeholder img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
-}
-
-.details-box {
-  background-color: #f8f8f8;
-  padding: 20px;
-  border-radius: 12px;
-  font-size: 16px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-.actions {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.show-doc {
-  background-color: #007bce;
+.btn.primary {
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 15px;
-  font-size: 16px;
-  width: 90%;
-  margin: 10px auto;
-  display: block;
+}
+
+.btn.outline {
+  background-color: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
+
+#upload-area {
+  position: relative;
+  height: 200px;
+  background: #f0f0f0;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
-}
-
-.show-doc:hover {
-  background-color: #005fa3;
-}
-
-.send-doc {
-  background: none;
-  border: none;
-  color: #007bce;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
   cursor: pointer;
-  text-decoration: underline;
+  overflow: hidden;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+#upload-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-@media (max-width: 480px) {
-  .title {
-    font-size: 18px;
-  }
-
-  .tab {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .show-doc {
-    font-size: 14px;
-    padding: 12px;
-  }
-
-  .send-doc {
-    font-size: 14px;
-  }
-
-  .document-placeholder {
-    height: 250px;
-    line-height: 250px;
-  }
+#upload-text {
+  position: absolute;
+  z-index: 1;
+  font-size: 16px;
+  color: #888;
 }
