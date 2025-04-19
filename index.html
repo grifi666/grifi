@@ -2,68 +2,217 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Удостоверение личности</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #000;
+    }
+
+    .header {
+      padding: 16px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }
+
+    .back-arrow {
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      font-size: 18px;
+      color: #e53935;
+    }
+
+    .tabs {
+      display: flex;
+      border: 1px solid #e53935;
+      margin: 16px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      color: #e53935;
+      background: #fff;
+      transition: 0.2s ease;
+    }
+
+    .tab.active {
+      background: #e53935;
+      color: #fff;
+    }
+
+    .tab-content {
+      padding: 0 16px;
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 0;
+    }
+
+    .field label {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .field input {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      outline: none;
+      background: #f9f9f9;
+    }
+
+    .buttons {
+      margin: 32px 16px 16px;
+    }
+
+    .button-main {
+      background: #0288d1;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .button-main svg {
+      margin-right: 8px;
+    }
+
+    .button-outline {
+      background: none;
+      color: #0288d1;
+      border: 2px solid #0288d1;
+      font-size: 16px;
+      padding: 12px;
+      border-radius: 6px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button-outline svg {
+      margin-right: 8px;
+    }
+
+    #id-photo {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-top: 16px;
+      display: none;
+      border-radius: 8px;
+    }
+
+    input[type="file"] {
+      margin-top: 16px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <button class="back-button">&larr;</button>
-      <h1>Удостоверение личности</h1>
-    </header>
+  <div class="header">
+    <span class="back-arrow">&#8592;</span>
+    Удостоверение личности
+  </div>
 
-    <div class="tabs">
-      <button class="tab active" data-tab="document">Документ</button>
-      <button class="tab" data-tab="details">Реквизиты</button>
-    </div>
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab(this, 'document')">Документ</div>
+    <div class="tab" onclick="switchTab(this, 'details')">Реквизиты</div>
+  </div>
 
-    <div id="document" class="tab-content active">
-      <div class="doc-preview" id="upload-area">
-        <p id="upload-text">Изображение документа</p>
-        <img id="preview-image" src="" alt="ID карта" style="display: none;" />
-        <input type="file" id="file-input" accept="image/*" hidden />
-      </div>
+  <!-- Вкладка "Документ" -->
+  <div id="document" class="tab-content active">
+    <input type="file" accept="image/*" onchange="previewImage(event)" />
+    <img id="id-photo" src="" alt="Фото документа" />
 
-      <button class="btn primary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 4H21V20H3z"/><path d="M8 8H16M8 12H16M8 16H12"/></svg>
+    <div class="buttons">
+      <button class="button-main">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M4 4v16h16V4H4zm14 14H6V6h12v12z"/><path d="M8 8h2v2H8zM12 8h4v2h-4zM8 12h8v2H8z"/></svg>
         Предъявить документ
       </button>
-
-      <button class="btn outline">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2"><path d="M4 4H20V20H4z"/><path d="M12 8V16M8 12H16"/></svg>
+      <button class="button-outline">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 9h5.17v6h4V9h5.17L12 2z"/></svg>
         Отправить документ
       </button>
     </div>
+  </div>
 
-    <div id="details" class="tab-content">
-      <div class="form-group">
-        <label>ФИО</label>
-        <input type="text" value="Иванов Иван Иванович" />
-      </div>
-      <div class="form-group">
-        <label>ИИН</label>
-        <input type="text" value="000000000000" />
-      </div>
-      <div class="form-group">
-        <label>Дата рождения</label>
-        <input type="text" value="01.01.1990" />
-      </div>
-      <div class="form-group">
-        <label>Номер документа</label>
-        <input type="text" value="123456789" />
-      </div>
-      <div class="form-group">
-        <label>Дата выдачи</label>
-        <input type="text" value="01.01.2020" />
-      </div>
-      <div class="form-group">
-        <label>Срок действия</label>
-        <input type="text" value="01.01.2030" />
-      </div>
+  <!-- Вкладка "Реквизиты" -->
+  <div id="details" class="tab-content">
+    <div class="field">
+      <label>ФИО</label>
+      <input type="text" placeholder="Введите ФИО" />
+    </div>
+    <div class="field">
+      <label>ИИН</label>
+      <input type="text" placeholder="Введите ИИН" />
+    </div>
+    <div class="field">
+      <label>Дата рождения</label>
+      <input type="text" placeholder="дд.мм.гггг" />
+    </div>
+    <div class="field">
+      <label>Номер документа</label>
+      <input type="text" placeholder="Введите номер документа" />
+    </div>
+    <div class="field">
+      <label>Дата выдачи</label>
+      <input type="text" placeholder="дд.мм.гггг" />
+    </div>
+    <div class="field">
+      <label>Срок действия</label>
+      <input type="text" placeholder="дд.мм.гггг" />
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    function switchTab(tabElement, tabId) {
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+
+      tabElement.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        const img = document.getElementById('id-photo');
+        img.src = reader.result;
+        img.style.display = 'block';
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>
 </body>
 </html>
